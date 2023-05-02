@@ -2,6 +2,8 @@
 
 > Common functions for Bazel rules.
 
+[![Test](https://github.com/mgred/bazel_lib/actions/workflows/test.yaml/badge.svg?branch=main&event=push)](https://github.com/mgred/bazel_lib/actions/workflows/test.yaml)
+
 ## Installation
 
 ```python
