@@ -36,3 +36,9 @@ git clone https://github.com/mgred/bazel_lib.git
 ```bash
 pre-commit install
 ```
+
+Run tests:
+
+```bash
+bazel test //:defs_test
+```
