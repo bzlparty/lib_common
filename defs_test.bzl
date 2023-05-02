@@ -1,5 +1,5 @@
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
-load("//:defs.bzl", "map", "filter")
+load("//:defs.bzl", "filter", "map")
 
 def filter_test_impl(ctx):
     env = unittest.begin(ctx)
@@ -8,7 +8,7 @@ def filter_test_impl(ctx):
 
 def map_test_impl(ctx):
     env = unittest.begin(ctx)
-    asserts.equals(env, map(lambda i: i*2, [1, 2, 3]), [2, 4, 6])
+    asserts.equals(env, map(lambda i: i * 2, [1, 2, 3]), [2, 4, 6])
     return unittest.end(env)
 
 _filter_test = unittest.make(filter_test_impl)

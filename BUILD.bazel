@@ -14,8 +14,8 @@ bzl_library(
     srcs = ["deps.bzl"],
     visibility = ["//visibility:public"],
     deps = [
-        "@bazel_tools//tools/build_defs/repo:http.bzl"
-    ]
+        "@bazel_tools//tools/build_defs/repo:http.bzl",
+    ],
 )
 
 defs_test_suite(name = "defs_test")
