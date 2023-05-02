@@ -24,3 +24,15 @@ load("@mgred_bazel_lib//:defs.bzl", "...")
 
 * `filter`
 * `map`
+
+## Development
+
+```bash
+git clone https://github.com/mgred/bazel_lib.git
+```
+
+[Install pre-commit](https://pre-commit.com/#installation) and add all hooks to the repository:
+
+```bash
+pre-commit install
+```
