@@ -1,0 +1,30 @@
+# This workflow runs all test targets on push/pull_request to main
+# See .github/workflows/ci.bazelrc for more information on cache
+# configuration
+
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Mount bazel caches
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/bazel
+            ~/.cache/bazel-repo
+          key: bazel-cache-${{ hashFiles('BUILD.bazel', '*.bzl', 'WORKSPACE') }}
+          restore-keys: bazel-cache-
+      - name: Test
+        run: bazel --bazelrc=.github/workflows/ci.bazelrc test //...

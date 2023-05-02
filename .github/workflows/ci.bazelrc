@@ -1,0 +1,2 @@
+build --disk_cache=~/.cache/bazel
+build --repository_cache=~/.cache/bazel-repo
