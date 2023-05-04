@@ -6,6 +6,8 @@
 
 ## Installation
 
+Add the following snippet to the `WORKSPACE` file:
+
 ```python
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
