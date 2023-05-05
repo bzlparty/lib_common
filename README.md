@@ -13,7 +13,7 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 git_repository(
     name = "mgred_bazel_lib",
-    tag = "v0.1.0",
+    tag = "v1.0.0",
     remote = "https://github.com/mgred/bazel_lib.git",
 )
 ```
