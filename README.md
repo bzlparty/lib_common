@@ -26,9 +26,9 @@ load("@mgred_bazel_lib//:defs.bzl", "...")
 
 **List**
 
-* `find`
 * `filter`
 * `map`
+* `occurs`
 
 ## Development
 
