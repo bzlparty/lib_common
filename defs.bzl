@@ -1,5 +1,20 @@
 "Common functions for Bazel rules."
 
+def every(f, arr):
+    """Check if every item of `arr` passes function `f`.
+
+    Args:
+      f: function to execute on every item,
+      arr: list to iterate over,
+
+    Returns:
+      True or False
+
+    Example:
+      every(lambda i: i.endswith(".js"), ["app.js", "lib.js"]) // True
+    """
+    return len(filter(f, arr)) == len(arr)
+
 def filter(f, arr):
     """Filter a list `arr` by applying a function `f` to each item.
 
@@ -52,3 +67,18 @@ def occurs(i, arr):
         if a == i:
             return True
     return False
+
+def some(f, arr):
+    """Check if at least one item of `arr` passes function `f`.
+
+    Args:
+      f: function to execute on every item,
+      arr: list to iterate over,
+
+    Returns:
+      True or False
+
+    Example:
+      some(lambda i: i.endswith(".js"), ["app.js", "lib.ts"]) // True
+    """
+    return len(filter(f, arr)) > 0
