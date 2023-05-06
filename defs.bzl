@@ -3,20 +3,23 @@
 def every(f, arr):
     """Check if every item of `arr` passes function `f`.
 
+    Example:
+      every(lambda i: i.endswith(".js"), ["app.js", "lib.js"]) // True
+
     Args:
       f: function to execute on every item,
       arr: list to iterate over,
 
     Returns:
       True or False
-
-    Example:
-      every(lambda i: i.endswith(".js"), ["app.js", "lib.js"]) // True
     """
     return len(filter(f, arr)) == len(arr)
 
 def filter(f, arr):
     """Filter a list `arr` by applying a function `f` to each item.
+
+    Example:
+      filter(lambda i: i.endswith(".js"), ["app.ts", "app.js", "lib.ts", "lib.js"]) // ["app.js", "lib.js"]
 
     Args:
       f: function to execute on every item,
@@ -24,9 +27,6 @@ def filter(f, arr):
 
     Returns:
       A new list containing items that passed the filter function.
-
-    Example:
-      filter(lambda i: i.endswith(".js"), ["app.ts", "app.js", "lib.ts", "lib.js"]) // ["app.js", "lib.js"]
     """
     res = []
     for a in arr:
@@ -37,20 +37,24 @@ def filter(f, arr):
 def map(f, arr):
     """Apply a function `f` with each item of `arr` and return a list with all items where said funtion returns truthy.
 
+    Example:
+      map(lambda i: i*2, [1, 2, 3]) // [2, 4, 6]
+
     Args:
       f: function to execute on every item.
       arr: list to iterate over.
 
     Returns:
       A new list with all mapped items.
-
-    Example:
-      map(lambda i: i*2, [1, 2, 3]) // [2, 4, 6]
     """
     return [f(a) for a in arr]
 
 def occurs(i, arr):
     """Know, if an item `i` occurs in a list `arr`.
+
+    Example:
+      occurs(2, [1, 2, 3]) // True
+      occurs("foo", ["bar", "baz"]) // False
 
     Args:
       i: item to search for
@@ -58,10 +62,6 @@ def occurs(i, arr):
 
     Returns:
       True or False
-
-    Example:
-      occurs(2, [1, 2, 3]) // True
-      occurs("foo", ["bar", "baz"]) // False
     """
     for a in arr:
         if a == i:
@@ -71,14 +71,14 @@ def occurs(i, arr):
 def some(f, arr):
     """Check if at least one item of `arr` passes function `f`.
 
+    Example:
+      some(lambda i: i.endswith(".js"), ["app.js", "lib.ts"]) // True
+
     Args:
       f: function to execute on every item,
       arr: list to iterate over,
 
     Returns:
       True or False
-
-    Example:
-      some(lambda i: i.endswith(".js"), ["app.js", "lib.ts"]) // True
     """
     return len(filter(f, arr)) > 0

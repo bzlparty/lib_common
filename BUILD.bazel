@@ -1,4 +1,6 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("@io_bazel_stardoc//stardoc:stardoc.bzl", "stardoc")
+load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load("//:defs_test.bzl", "defs_test_suite")
 
 exports_files(["defs.bzl"])
@@ -10,3 +12,37 @@ bzl_library(
 )
 
 defs_test_suite(name = "defs_test")
+
+stardoc(
+    name = "docs_src",
+    out = "docs.md",
+    input = "defs.bzl",
+)
+
+write_file(
+    name = "gen_docs_update",
+    out = "docs_update.sh",
+    content = [
+        "#!/usr/bin/env bash",
+        "cd $BUILD_WORKSPACE_DIRECTORY",
+        "cp -vf bazel-bin/docs.md .",
+    ],
+)
+
+sh_binary(
+    name = "docs_update",
+    srcs = ["docs_update.sh"],
+    data = ["docs.md"],
+)
+
+genrule(
+    name = "docs_html",
+    srcs = ["docs.md"],
+    outs = ["docs.html"],
+    cmd = "pandoc --standalone --output $(OUTS) --write html5 $(SRCS)",
+)
+
+alias(
+    name = "docs",
+    actual = "docs_html",
+)

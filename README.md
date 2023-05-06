@@ -34,6 +34,8 @@ load("@mgred_bazel_lib//:defs.bzl", "...")
 
 ## Development
 
+**Setup**
+
 ```bash
 git clone https://github.com/mgred/bazel_lib.git
 ```
@@ -44,8 +46,16 @@ git clone https://github.com/mgred/bazel_lib.git
 pre-commit install
 ```
 
-Run tests:
+**Tests**
 
 ```bash
 bazel test //:defs_test
+```
+
+**Documentation**
+
+When changing in-code documentation, run:
+
+```bash
+bazel run //:docs_update
 ```
