@@ -1,6 +1,7 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@io_bazel_stardoc//stardoc:stardoc.bzl", "stardoc")
 load("@bazel_skylib//rules:write_file.bzl", "write_file")
+load("@bazel_skylib//rules:diff_test.bzl", "diff_test")
 load("//:defs_test.bzl", "defs_test_suite")
 
 exports_files(["defs.bzl"])
@@ -15,8 +16,15 @@ defs_test_suite(name = "defs_test")
 
 stardoc(
     name = "docs_src",
-    out = "docs.md",
+    out = "_docs.md",
     input = "defs.bzl",
+)
+
+diff_test(
+    name = "docs_diff_test",
+    failure_message = "Please run: bazel run //:docs_update",
+    file1 = "docs.md",
+    file2 = "_docs.md",
 )
 
 write_file(
@@ -25,21 +33,29 @@ write_file(
     content = [
         "#!/usr/bin/env bash",
         "cd $BUILD_WORKSPACE_DIRECTORY",
-        "cp -vf bazel-bin/docs.md .",
+        "cp -vf bazel-bin/_docs.md docs.md",
     ],
 )
 
 sh_binary(
     name = "docs_update",
     srcs = ["docs_update.sh"],
-    data = ["docs.md"],
+    data = ["_docs.md"],
 )
 
 genrule(
     name = "docs_html",
-    srcs = ["docs.md"],
+    srcs = ["_docs.md"],
     outs = ["docs.html"],
     cmd = "pandoc --standalone --output $(OUTS) --write html5 $(SRCS)",
+)
+
+test_suite(
+    name = "all_tests",
+    tests = [
+        "defs_test",
+        "docs_diff_test",
+    ],
 )
 
 alias(
