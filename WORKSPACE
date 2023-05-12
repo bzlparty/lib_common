@@ -29,3 +29,17 @@ http_archive(
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 
 bazel_skylib_workspace()
+
+http_archive(
+    name = "mgred_rules_pandoc",
+    sha256 = "0c1f3f27a982b5ffbc2cca74d7062d43fea70a234587165b7b211bd2f6c5d6bc",
+    strip_prefix = "rules_pandoc-0.0.2",
+    url = "https://github.com/mgred/rules_pandoc/releases/download/v0.0.2/rules_pandoc-v0.0.2.tar.gz",
+)
+
+load("@mgred_rules_pandoc//pandoc:repositories.bzl", "LATEST_PANDOC_VERSION", "pandoc_register_toolchains")
+
+pandoc_register_toolchains(
+    name = "pandoc",
+    pandoc_version = LATEST_PANDOC_VERSION,
+)

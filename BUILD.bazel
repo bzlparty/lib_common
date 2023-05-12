@@ -2,6 +2,7 @@ load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@io_bazel_stardoc//stardoc:stardoc.bzl", "stardoc")
 load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load("@bazel_skylib//rules:diff_test.bzl", "diff_test")
+load("@mgred_rules_pandoc//pandoc:defs.bzl", "pandoc")
 load("//:defs_test.bzl", "defs_test_suite")
 
 exports_files(["defs.bzl"])
@@ -43,11 +44,13 @@ sh_binary(
     data = ["_docs.md"],
 )
 
-genrule(
+pandoc(
     name = "docs_html",
-    srcs = ["_docs.md"],
-    outs = ["docs.html"],
-    cmd = "pandoc --standalone --output $(OUTS) --write html5 $(SRCS)",
+    out = "docs.html",
+    input = "_docs.md",
+    standalone = True,
+    title = "bazel_lib",
+    toc = True,
 )
 
 test_suite(
