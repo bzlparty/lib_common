@@ -172,8 +172,11 @@
 <ul>
 <li><a href="#every" id="toc-every">every</a></li>
 <li><a href="#filter" id="toc-filter">filter</a></li>
+<li><a href="#find" id="toc-find">find</a></li>
 <li><a href="#map" id="toc-map">map</a></li>
 <li><a href="#occurs" id="toc-occurs">occurs</a></li>
+<li><a href="#once" id="toc-once">once</a></li>
+<li><a href="#pick" id="toc-pick">pick</a></li>
 <li><a href="#some" id="toc-some">some</a></li>
 </ul>
 </nav>
@@ -255,6 +258,42 @@ to each item.</p>
 </table>
 <p><strong>RETURNS</strong></p>
 <p>A new list containing items that passed the filter function.</p>
+<p><a id="find"></a></p>
+<h2 id="find">find</h2>
+<pre>
+find(<a href="#find-f">f</a>, <a href="#find-arr">arr</a>)
+</pre>
+<p>Find a particular item from list <code>arr</code> by a given function
+<code>f</code>.</p>
+<p>Unlike <code>pick</code>, the <code>find</code> method returns a
+tuple of the index and the value of first item passing by
+<code>f</code>. Furhermore <code>find</code> does not fail if no item
+passes <code>f</code>. In this case <code>(-1, None)</code> is
+returned.</p>
+<p><strong>PARAMETERS</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a id="find-f"></a>f</td>
+<td style="text-align: left;">function to execute on every item,</td>
+<td style="text-align: left;">none</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a id="find-arr"></a>arr</td>
+<td style="text-align: left;">list to iterate over,</td>
+<td style="text-align: left;">none</td>
+</tr>
+</tbody>
+</table>
+<p><strong>RETURNS</strong></p>
+<p>Tuple (index, item)</p>
 <p><a id="map"></a></p>
 <h2 id="map">map</h2>
 <pre>
@@ -320,6 +359,71 @@ occurs(<a href="#occurs-i">i</a>, <a href="#occurs-arr">arr</a>)
 </table>
 <p><strong>RETURNS</strong></p>
 <p>True or False</p>
+<p><a id="once"></a></p>
+<h2 id="once">once</h2>
+<pre>
+once(<a href="#once-f">f</a>, <a href="#once-arr">arr</a>)
+</pre>
+<p>Check if exactly one item in list <code>arr</code> passes the given
+function <code>f</code>.</p>
+<p><strong>PARAMETERS</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a id="once-f"></a>f</td>
+<td style="text-align: left;">function to execute on every item,</td>
+<td style="text-align: left;">none</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a id="once-arr"></a>arr</td>
+<td style="text-align: left;">list to iterate over,</td>
+<td style="text-align: left;">none</td>
+</tr>
+</tbody>
+</table>
+<p><strong>RETURNS</strong></p>
+<p>True or False</p>
+<p><a id="pick"></a></p>
+<h2 id="pick">pick</h2>
+<pre>
+pick(<a href="#pick-f">f</a>, <a href="#pick-arr">arr</a>)
+</pre>
+<p>Pick a particular item in list <code>arr</code> by a given function
+<code>f</code>.</p>
+<p>Unlike <code>filter</code>, the <code>pick</code> method returns the
+first item <em>found</em> by <code>f</code>. If no item has passed
+<code>f</code>, the function will <em>fail</em>.</p>
+<p><strong>PARAMETERS</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a id="pick-f"></a>f</td>
+<td style="text-align: left;">function to execute on every item,</td>
+<td style="text-align: left;">none</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a id="pick-arr"></a>arr</td>
+<td style="text-align: left;">list to iterate over,</td>
+<td style="text-align: left;">none</td>
+</tr>
+</tbody>
+</table>
+<p><strong>RETURNS</strong></p>
+<p>item</p>
 <p><a id="some"></a></p>
 <h2 id="some">some</h2>
 <pre>
