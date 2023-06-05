@@ -13,7 +13,7 @@ on:
 
 jobs:
   release:
-    uses: bazel-contrib/.github/.github/workflows/release_ruleset.yaml@v2
+    uses: bazel-contrib/.github/.github/workflows/release_ruleset.yaml@v3
     with:
       release_files: bazel_lib-*.tar.gz
       prerelease: false
