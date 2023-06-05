@@ -15,6 +15,27 @@ def every(f, arr):
     """
     return len(filter(f, arr)) == len(arr)
 
+def find(f, arr):
+    """Find a particular item from list `arr` by a given function `f`.
+
+    Unlike `pick`, the `find` method returns a tuple of the index and the value of first item passing by `f`.
+    Furhermore `find` does not fail if no item passes `f`.
+    In this case `(-1, None)` is returned.
+
+    Args:
+      f: function to execute on every item,
+      arr: list to iterate over,
+
+    Returns:
+      Tuple (index, item)
+    """
+    i = 0
+    for a in arr:
+        if f(a):
+            return (i, a)
+        i += 1
+    return (-1, None)
+
 def filter(f, arr):
     """Filter a list `arr` by applying a function `f` to each item.
 
@@ -67,6 +88,36 @@ def occurs(i, arr):
         if a == i:
             return True
     return False
+
+def once(f, arr):
+    """Check if exactly one item in list `arr` passes the given function `f`.
+
+    Args:
+      f: function to execute on every item,
+      arr: list to iterate over,
+
+    Returns:
+      True or False
+    """
+    return len(filter(f, arr)) == 1
+
+def pick(f, arr):
+    """Pick a particular item in list `arr` by a given function `f`.
+
+    Unlike `filter`, the `pick` method returns the first item _found_ by `f`.
+    If no item has passed `f`, the function will _fail_.
+
+    Args:
+      f: function to execute on every item,
+      arr: list to iterate over,
+
+    Returns:
+      item
+    """
+    for a in arr:
+        if f(a):
+            return a
+    fail("Could not find any item")
 
 def some(f, arr):
     """Check if at least one item of `arr` passes function `f`.

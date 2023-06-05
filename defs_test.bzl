@@ -1,12 +1,17 @@
 "Test suite for defs.bzl"
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
-load("//:defs.bzl", "every", "filter", "map", "occurs", "some")
+load("//:defs.bzl", "every", "filter", "find", "map", "occurs", "some")
 
 def every_test_impl(ctx):
     env = unittest.begin(ctx)
     asserts.equals(env, every(lambda i: i.endswith(".js"), ["app.js", "lib.js"]), True)
     asserts.equals(env, every(lambda i: i.endswith(".ts"), ["app.js", "lib.ts"]), False)
+    return unittest.end(env)
+
+def find_test_impl(ctx):
+    env = unittest.begin(ctx)
+    asserts.equals(env, find(lambda i: i.endswith(".js"), ["app.ts", "app.js", "lib.ts", "lib.js"]), (1, "app.js"))
     return unittest.end(env)
 
 def filter_test_impl(ctx):
@@ -32,10 +37,11 @@ def some_test_impl(ctx):
     return unittest.end(env)
 
 _every_test = unittest.make(every_test_impl)
+_find_test = unittest.make(find_test_impl)
 _filter_test = unittest.make(filter_test_impl)
 _map_test = unittest.make(map_test_impl)
 _occurs_test = unittest.make(occurs_test_impl)
 _some_test = unittest.make(some_test_impl)
 
 def defs_test_suite(name):
-    unittest.suite(name, _every_test, _filter_test, _map_test, _occurs_test, _some_test)
+    unittest.suite(name, _every_test, _find_test, _filter_test, _map_test, _occurs_test, _some_test)

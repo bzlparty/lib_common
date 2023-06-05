@@ -56,6 +56,34 @@ Example:
 A new list containing items that passed the filter function.
 
 
+<a id="find"></a>
+
+## find
+
+<pre>
+find(<a href="#find-f">f</a>, <a href="#find-arr">arr</a>)
+</pre>
+
+Find a particular item from list `arr` by a given function `f`.
+
+Unlike `pick`, the `find` method returns a tuple of the index and the value of first item passing by `f`.
+Furhermore `find` does not fail if no item passes `f`.
+In this case `(-1, None)` is returned.
+
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="find-f"></a>f |  function to execute on every item,   |  none |
+| <a id="find-arr"></a>arr |  list to iterate over,   |  none |
+
+**RETURNS**
+
+Tuple (index, item)
+
+
 <a id="map"></a>
 
 ## map
@@ -109,6 +137,56 @@ Example:
 **RETURNS**
 
 True or False
+
+
+<a id="once"></a>
+
+## once
+
+<pre>
+once(<a href="#once-f">f</a>, <a href="#once-arr">arr</a>)
+</pre>
+
+Check if exactly one item in list `arr` passes the given function `f`.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="once-f"></a>f |  function to execute on every item,   |  none |
+| <a id="once-arr"></a>arr |  list to iterate over,   |  none |
+
+**RETURNS**
+
+True or False
+
+
+<a id="pick"></a>
+
+## pick
+
+<pre>
+pick(<a href="#pick-f">f</a>, <a href="#pick-arr">arr</a>)
+</pre>
+
+Pick a particular item in list `arr` by a given function `f`.
+
+Unlike `filter`, the `pick` method returns the first item _found_ by `f`.
+If no item has passed `f`, the function will _fail_.
+
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="pick-f"></a>f |  function to execute on every item,   |  none |
+| <a id="pick-arr"></a>arr |  list to iterate over,   |  none |
+
+**RETURNS**
+
+item
 
 
 <a id="some"></a>
