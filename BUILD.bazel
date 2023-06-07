@@ -58,6 +58,10 @@ write_file(
 pandoc(
     name = "docs_html",
     out = "docs.html",
+    args = [
+        "--shift-heading-level-by",
+        "1",
+    ],
     input = "_docs.md",
     standalone = True,
     title = "bazel_lib",
