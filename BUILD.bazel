@@ -44,6 +44,17 @@ sh_binary(
     data = ["_docs.md"],
 )
 
+write_file(
+    name = "release",
+    out = "release.sh",
+    content = [
+        "#!/usr/bin/env bash",
+        "cd $BUILD_WORKSPACE_DIRECTORY",
+        "git tag --annotate $1 && git push --tags",
+    ],
+    is_executable = True,
+)
+
 pandoc(
     name = "docs_html",
     out = "docs.html",
