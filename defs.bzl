@@ -1,4 +1,12 @@
-"Common functions for Bazel rules."
+"""
+# API
+
+`load` as always:
+
+```starlark
+load("@mgred_bazel_lib//:defs.bzl", "...")
+```
+"""
 
 def every(f, arr):
     """Check if every item of `arr` passes function `f`.

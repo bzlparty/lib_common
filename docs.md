@@ -1,6 +1,14 @@
 <!-- Generated with Stardoc: http://skydoc.bazel.build -->
 
-Common functions for Bazel rules.
+
+# API
+
+`load` as always:
+
+```starlark
+load("@mgred_bazel_lib//:defs.bzl", "...")
+```
+
 
 <a id="every"></a>
 
