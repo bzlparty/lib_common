@@ -69,7 +69,7 @@ write_file(
     name = "base",
     out = "base.html",
     content = [
-        "<base href='/bazel_lib' />",
+        "<base href='https://mgred.github.io/bazel_lib/' />",
     ],
 )
 
