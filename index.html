@@ -165,10 +165,13 @@
   <![endif]-->
 </head>
 <body>
+[<a href='/'>api</a> | <a href='/dev.html'>dev</a> | <a href='https://github.com/mgred/bazel_lib'>github</a>]
 <header id="title-block-header">
 <h1 class="title">bazel_lib</h1>
 </header>
 <nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#api" id="toc-api">API</a>
 <ul>
 <li><a href="#every" id="toc-every">every</a></li>
 <li><a href="#filter" id="toc-filter">filter</a></li>
@@ -178,12 +181,15 @@
 <li><a href="#once" id="toc-once">once</a></li>
 <li><a href="#pick" id="toc-pick">pick</a></li>
 <li><a href="#some" id="toc-some">some</a></li>
+</ul></li>
 </ul>
 </nav>
 <!-- Generated with Stardoc: http://skydoc.bazel.build -->
-<p>Common functions for Bazel rules.</p>
+<h2 id="api">API</h2>
+<p><code>load</code> as always:</p>
+<pre class="starlark"><code>load(&quot;@mgred_bazel_lib//:defs.bzl&quot;, &quot;...&quot;)</code></pre>
 <p><a id="every"></a></p>
-<h2 id="every">every</h2>
+<h3 id="every">every</h3>
 <pre>
 every(<a href="#every-f">f</a>, <a href="#every-arr">arr</a>)
 </pre>
@@ -221,7 +227,7 @@ True</p>
 <p><strong>RETURNS</strong></p>
 <p>True or False</p>
 <p><a id="filter"></a></p>
-<h2 id="filter">filter</h2>
+<h3 id="filter">filter</h3>
 <pre>
 filter(<a href="#filter-f">f</a>, <a href="#filter-arr">arr</a>)
 </pre>
@@ -259,7 +265,7 @@ to each item.</p>
 <p><strong>RETURNS</strong></p>
 <p>A new list containing items that passed the filter function.</p>
 <p><a id="find"></a></p>
-<h2 id="find">find</h2>
+<h3 id="find">find</h3>
 <pre>
 find(<a href="#find-f">f</a>, <a href="#find-arr">arr</a>)
 </pre>
@@ -295,7 +301,7 @@ returned.</p>
 <p><strong>RETURNS</strong></p>
 <p>Tuple (index, item)</p>
 <p><a id="map"></a></p>
-<h2 id="map">map</h2>
+<h3 id="map">map</h3>
 <pre>
 map(<a href="#map-f">f</a>, <a href="#map-arr">arr</a>)
 </pre>
@@ -327,7 +333,7 @@ and return a list with all items where said funtion returns truthy.</p>
 <p><strong>RETURNS</strong></p>
 <p>A new list with all mapped items.</p>
 <p><a id="occurs"></a></p>
-<h2 id="occurs">occurs</h2>
+<h3 id="occurs">occurs</h3>
 <pre>
 occurs(<a href="#occurs-i">i</a>, <a href="#occurs-arr">arr</a>)
 </pre>
@@ -360,7 +366,7 @@ occurs(<a href="#occurs-i">i</a>, <a href="#occurs-arr">arr</a>)
 <p><strong>RETURNS</strong></p>
 <p>True or False</p>
 <p><a id="once"></a></p>
-<h2 id="once">once</h2>
+<h3 id="once">once</h3>
 <pre>
 once(<a href="#once-f">f</a>, <a href="#once-arr">arr</a>)
 </pre>
@@ -391,7 +397,7 @@ function <code>f</code>.</p>
 <p><strong>RETURNS</strong></p>
 <p>True or False</p>
 <p><a id="pick"></a></p>
-<h2 id="pick">pick</h2>
+<h3 id="pick">pick</h3>
 <pre>
 pick(<a href="#pick-f">f</a>, <a href="#pick-arr">arr</a>)
 </pre>
@@ -425,7 +431,7 @@ first item <em>found</em> by <code>f</code>. If no item has passed
 <p><strong>RETURNS</strong></p>
 <p>item</p>
 <p><a id="some"></a></p>
-<h2 id="some">some</h2>
+<h3 id="some">some</h3>
 <pre>
 some(<a href="#some-f">f</a>, <a href="#some-arr">arr</a>)
 </pre>
