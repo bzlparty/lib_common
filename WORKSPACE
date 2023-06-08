@@ -32,12 +32,14 @@ bazel_skylib_workspace()
 
 http_archive(
     name = "mgred_rules_pandoc",
-    sha256 = "33a16166528baf40832632a1803e9089510f32c47c8fe2d2f92f9ed30b9e298e",
-    strip_prefix = "rules_pandoc-0.1.0",
-    url = "https://github.com/mgred/rules_pandoc/releases/download/v0.1.0/rules_pandoc-v0.1.0.tar.gz",
+    sha256 = "0ee76dc7403d40de7946e6b884f3e868e72f2d7ba172edfc828bfb50fd5baf04",
+    strip_prefix = "rules_pandoc-0.2.0",
+    url = "https://github.com/mgred/rules_pandoc/releases/download/v0.2.0/rules_pandoc-v0.2.0.tar.gz",
 )
 
-load("@mgred_rules_pandoc//pandoc:repositories.bzl", "LATEST_PANDOC_VERSION", "pandoc_register_toolchains")
+load("@mgred_rules_pandoc//pandoc:repositories.bzl", "LATEST_PANDOC_VERSION", "pandoc_register_toolchains", "rules_pandoc_dependencies")
+
+rules_pandoc_dependencies()
 
 pandoc_register_toolchains(
     name = "pandoc",

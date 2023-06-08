@@ -45,14 +45,32 @@ sh_binary(
 )
 
 write_file(
-    name = "release",
-    out = "release.sh",
+    name = "gh_pages",
+    out = "gh_pages.sh",
     content = [
         "#!/usr/bin/env bash",
         "cd $BUILD_WORKSPACE_DIRECTORY",
-        "git tag --annotate $1 && git push --tags",
+        "mkdir docs",
+        "cp -vf bazel-bin/docs.html docs/index.html",
+        "cp -vf bazel-bin/dev.html docs/dev.html",
     ],
-    is_executable = True,
+)
+
+sh_binary(
+    name = "gen_gh_pages",
+    srcs = ["gh_pages.sh"],
+    data = [
+        "dev.html",
+        "docs.html",
+    ],
+)
+
+write_file(
+    name = "nav",
+    out = "nav.html",
+    content = [
+        "[<a href='/'>api</a> | <a href='/dev.html'>dev</a> | <a href='https://github.com/mgred/bazel_lib'>github</a>]",
+    ],
 )
 
 pandoc(
@@ -61,22 +79,46 @@ pandoc(
     args = [
         "--shift-heading-level-by",
         "1",
+        "--include-before-body",
+        "$(location nav.html)",
     ],
+    data = ["nav.html"],
     input = "_docs.md",
     standalone = True,
     title = "bazel_lib",
     toc = True,
 )
 
-test_suite(
-    name = "all_tests",
-    tests = [
-        "defs_test",
-        "docs_diff_test",
+pandoc(
+    name = "dev_html",
+    out = "dev.html",
+    args = [
+        "--shift-heading-level-by",
+        "1",
+        "--include-before-body",
+        "$(location nav.html)",
+    ],
+    data = ["nav.html"],
+    input = "dev.md",
+    standalone = True,
+    title = "bazel_lib",
+)
+
+filegroup(
+    name = "docs",
+    srcs = [
+        "dev.html",
+        "docs.html",
     ],
 )
 
-alias(
-    name = "docs",
-    actual = "docs_html",
+write_file(
+    name = "release",
+    out = "release.sh",
+    content = [
+        "#!/usr/bin/env bash",
+        "cd $BUILD_WORKSPACE_DIRECTORY",
+        "git tag --annotate $1 && git push --tags",
+    ],
+    is_executable = True,
 )

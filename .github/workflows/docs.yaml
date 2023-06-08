@@ -19,11 +19,8 @@ jobs:
             ~/.cache/bazel-repo
           key: bazel-cache-${{ hashFiles('BUILD.bazel', '*.bzl', 'WORKSPACE') }}
           restore-keys: bazel-cache-
-      - name: Build
-        run: |
-          bazel --bazelrc=.github/workflows/ci.bazelrc build //:docs.html
-          mkdir docs
-          cp bazel-bin/docs.html docs/index.html
+      - name: Generate Pages
+        run: bazel --bazelrc=.github/workflows/ci.bazelrc run //:gen_gh_pages
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
