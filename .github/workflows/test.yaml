@@ -27,4 +27,4 @@ jobs:
           key: bazel-cache-${{ hashFiles('BUILD.bazel', '*.bzl', 'WORKSPACE') }}
           restore-keys: bazel-cache-
       - name: Test
-        run: bazel --bazelrc=.github/workflows/ci.bazelrc test //:all_tests
+        run: bazel --bazelrc=.github/workflows/ci.bazelrc test //...
