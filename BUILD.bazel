@@ -66,6 +66,14 @@ sh_binary(
 )
 
 write_file(
+    name = "base",
+    out = "base.html",
+    content = [
+        "<base ref='bazel_lib' />",
+    ],
+)
+
+write_file(
     name = "nav",
     out = "nav.html",
     content = [
@@ -81,8 +89,13 @@ pandoc(
         "1",
         "--include-before-body",
         "$(location nav.html)",
+        "--include-in-header",
+        "$(location base.html)",
     ],
-    data = ["nav.html"],
+    data = [
+        "base.html",
+        "nav.html",
+    ],
     input = "_docs.md",
     standalone = True,
     title = "bazel_lib",
@@ -97,8 +110,13 @@ pandoc(
         "1",
         "--include-before-body",
         "$(location nav.html)",
+        "--include-in-header",
+        "$(location base.html)",
     ],
-    data = ["nav.html"],
+    data = [
+        "base.html",
+        "nav.html",
+    ],
     input = "dev.md",
     standalone = True,
     title = "bazel_lib",
