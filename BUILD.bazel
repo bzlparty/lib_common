@@ -2,7 +2,6 @@ load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@io_bazel_stardoc//stardoc:stardoc.bzl", "stardoc")
 load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load("@bazel_skylib//rules:diff_test.bzl", "diff_test")
-load("@mgred_rules_pandoc//pandoc:defs.bzl", "pandoc")
 load("//:defs_test.bzl", "defs_test_suite")
 
 exports_files(["defs.bzl"])
@@ -42,92 +41,6 @@ sh_binary(
     name = "docs_update",
     srcs = ["docs_update.sh"],
     data = ["_docs.md"],
-)
-
-write_file(
-    name = "gh_pages",
-    out = "gh_pages.sh",
-    content = [
-        "#!/usr/bin/env bash",
-        "cd $BUILD_WORKSPACE_DIRECTORY",
-        "mkdir docs",
-        "cp -vf bazel-bin/docs.html docs/index.html",
-        "cp -vf bazel-bin/dev.html docs/dev.html",
-    ],
-)
-
-sh_binary(
-    name = "gen_gh_pages",
-    srcs = ["gh_pages.sh"],
-    data = [
-        "dev.html",
-        "docs.html",
-    ],
-)
-
-write_file(
-    name = "base",
-    out = "base.html",
-    content = [
-        "<base href='/lib_common/' />",
-    ],
-)
-
-write_file(
-    name = "nav",
-    out = "nav.html",
-    content = [
-        "[<a href='index.html'>api</a> | <a href='dev.html'>dev</a> | <a href='https://github.com/bzlparty/lib_common'>github</a>]",
-    ],
-)
-
-pandoc(
-    name = "docs_html",
-    out = "docs.html",
-    args = [
-        "--shift-heading-level-by",
-        "1",
-        "--include-before-body",
-        "$(location nav.html)",
-        "--include-in-header",
-        "$(location base.html)",
-    ],
-    data = [
-        "base.html",
-        "nav.html",
-    ],
-    input = "_docs.md",
-    standalone = True,
-    title = "lib_common",
-    toc = True,
-)
-
-pandoc(
-    name = "dev_html",
-    out = "dev.html",
-    args = [
-        "--shift-heading-level-by",
-        "1",
-        "--include-before-body",
-        "$(location nav.html)",
-        "--include-in-header",
-        "$(location base.html)",
-    ],
-    data = [
-        "base.html",
-        "nav.html",
-    ],
-    input = "dev.md",
-    standalone = True,
-    title = "lib_common",
-)
-
-filegroup(
-    name = "docs",
-    srcs = [
-        "dev.html",
-        "docs.html",
-    ],
 )
 
 write_file(
