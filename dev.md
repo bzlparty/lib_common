@@ -3,7 +3,7 @@
 **Setup**
 
 ```bash
-git clone https://github.com/mgred/bazel_lib.git
+git clone https://github.com/bzlparty/lib_common.git
 ```
 
 [Install pre-commit](https://pre-commit.com/#installation) and add all hooks to the repository:

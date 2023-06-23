@@ -4,7 +4,7 @@
 `load` as always:
 
 ```starlark
-load("@mgred_bazel_lib//:defs.bzl", "...")
+load("@lib_common//:defs.bzl", "...")
 ```
 """
 

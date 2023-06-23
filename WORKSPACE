@@ -1,5 +1,5 @@
 workspace(
-    name = "mgred_bazel_lib",
+    name = "lib_common",
 )
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
@@ -31,10 +31,10 @@ load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 bazel_skylib_workspace()
 
 http_archive(
-    name = "mgred_rules_pandoc",
+    name = "bzlparty_rules_pandoc",
     sha256 = "0ee76dc7403d40de7946e6b884f3e868e72f2d7ba172edfc828bfb50fd5baf04",
     strip_prefix = "rules_pandoc-0.2.0",
-    url = "https://github.com/mgred/rules_pandoc/releases/download/v0.2.0/rules_pandoc-v0.2.0.tar.gz",
+    url = "https://github.com/bzlparty/rules_pandoc/releases/download/v0.2.0/rules_pandoc-v0.2.0.tar.gz",
 )
 
 load("@mgred_rules_pandoc//pandoc:repositories.bzl", "LATEST_PANDOC_VERSION", "pandoc_register_toolchains", "rules_pandoc_dependencies")
