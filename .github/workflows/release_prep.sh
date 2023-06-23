@@ -14,7 +14,18 @@ git archive --format=tar --prefix=${PREFIX}/ ${TAG} | gzip > $ARCHIVE
 SHA=$(shasum -a 256 $ARCHIVE | awk '{print $1}')
 
 cat << EOF
-Paste this snippet into your `WORKSPACE.bazel` file:
+
+## Using bzlmod
+
+\`MODULE.bazel\`:
+
+\`\`\`starlark
+bazel_dep(name = "lib_common", version = "${TAG:1}")
+\`\`\`
+
+## Using WORKSPACE
+
+\`WORKSPACE.bazel\`:
 
 \`\`\`starlark
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
